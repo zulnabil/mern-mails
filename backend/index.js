@@ -43,3 +43,14 @@ mailRouters.route('/list').get(function(req, res) {
     }
   })
 })
+
+// get last index
+mailRouters.route('/getLast').get(function(req, res) {
+  MailNumbers.find(function(err, mails) {
+    if (err) {
+      console.log(err)
+    } else {
+      res.json(mails[0].number)
+    }
+  }).sort({'number': -1}).limit(1)
+})

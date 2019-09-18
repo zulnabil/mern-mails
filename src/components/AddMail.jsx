@@ -41,7 +41,8 @@ export default function AddMail() {
   React.useEffect(() => {
     axios.get('http://localhost:4000/getLast')
       .then(res => {
-        setMail({ number: res.data+1 })
+        setMail({ number: res+1 })
+        alert(res)
       })
   }, [])
 
@@ -67,7 +68,6 @@ export default function AddMail() {
     <React.Fragment>
       <div className={classes.container}>
         <form className={classes.form} noValidate autoComplete="off">
-          <h2 style={{ textAlign: 'center' }}>Tambah Surat dengan nomor : {mail.number}</h2>
           <TextField
             id="standard-name"
             label="Nama Mahasiswa"
@@ -100,7 +100,7 @@ export default function AddMail() {
             onChange={handleChange('sign')}
             margin="normal"
           />
-          <Button onClick={handleSubmit} variant="contained" color="primary" className={classes.button}>
+          <Button onClick={alert(mail.number)} variant="contained" color="primary" className={classes.button}>
             Simpan
           </Button>
         </form>
